@@ -64,6 +64,9 @@
                 target.classList.remove("spec-selected");
             }
         }
+        function remove_step(target) {
+            this.remove();
+        }
     </script>
 </head>
 <body>
@@ -110,7 +113,7 @@
                 </button>
                 <button id="move-up-template">Up</button>
                 <button id="move-down-template">Down</button>
-                <button id="delete-template">Delete</button>
+                <button id="delete-template" onclick="remove_step(this.parent.parent)">Delete</button>
             </div>
         </div>
         <div id="steps-template">
@@ -123,13 +126,13 @@
                 ...
             </button>
             <div id="option-actions" class="hidden">
-                <button id="move-up">Up</button>
-                <button id="move-down">Down</button>
-                <button id="delete">Delete</button>
                 <button id="shrink"
                         onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
                     -
                 </button>
+                <button id="move-up">Up</button>
+                <button id="move-down">Down</button>
+                <button id="delete" onclick="remove_step(this.parent.parent)" >Delete</button>
             </div>
         </div>
         <div id="login-step" class="area dsl-item">
@@ -138,13 +141,13 @@
                 ...
             </button>
             <div id="option-actions-template" class="hidden">
-                <button id="move-up-template">Up</button>
-                <button id="move-down-template">Down</button>
-                <button id="delete-template">Delete</button>
                 <button id="shrink-template"
                         onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
                     -
                 </button>
+                <button id="move-up-template">Up</button>
+                <button id="move-down-template">Down</button>
+                <button id="delete-template" onclick="remove_step(this.parent.parent)">Delete</button>
             </div>
              User with <label for="user-id">user id</label><input
                 id="user-id">
