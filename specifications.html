@@ -29,11 +29,11 @@
     <div id="step-template" class="area dsl-item hidden">
         <button id="insert-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <div id="login-step-template" class="area dsl-item">User with <label for="user-id">user id</label><input
-            id="user-id">
+    <div id="login-step-template" class="area dsl-item">User with <label for="user-id-template">user id</label><input
+            id="user-id-template">
         logged
-        in with <label for="password">password</label>
-        <input id="password">
+        in with <label for="password-template">password</label>
+        <input id="password-template">
         <button id="insert-login-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
     <div id="logout-template" class="area dsl-item">User logged out
@@ -45,7 +45,7 @@
         <option>weekly</option>
         <option>daily</option>
     </select> newsletter delivery.
-        <button id="insert-opt-in-newsletter-step" onclick="insert_clicked(this.parentNode)">Insert</button>
+        <button id="insert-opt-in-newsletter-step-template" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
 </div>
 <div id="specifications" class="area spec-list">
@@ -53,7 +53,26 @@
     <header id="spec-header">
         <button id="add-new-spec">New</button>
     </header>
-    <div id="area spec-template" onclick="toggle_selected(this)">
+    <div id="spec-template" class="area spec" onclick="toggle_selected(this)">
+        <div id="options-template">
+            <button id="hotspot-template"
+                    onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
+                ...
+            </button>
+            <div id="option-actions-template" class="hidden">
+                <button id="move-up-template">Up</button>
+                <button id="move-down-template">Down</button>
+                <button id="delete-template">Delete</button>
+                <button id="shrink-template"
+                        onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
+                    -
+                </button>
+            </div>
+        </div>
+        <div id="steps-template">
+        </div>
+    </div>
+    <div id="opt-in-spec" class="area spec spec-selected" onclick="toggle_selected(this)">
         <div id="options-template">
             <button id="hotspot"
                     onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
@@ -69,12 +88,21 @@
                 </button>
             </div>
         </div>
-        <div id="steps-template">
-
-        </div>
-    </div>
-    <div id="opt-in-spec" class="area specification spec spec-selected" onclick="toggle_selected(this)">
-        <div id="login-step-template" class="area dsl-item">User with <label for="user-id">user id</label><input
+        <div id="login-step" class="area dsl-item">
+            <button id="hotspot"
+                    onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
+                ...
+            </button>
+            <div id="option-actions-template" class="hidden">
+                <button id="move-up-template">Up</button>
+                <button id="move-down-template">Down</button>
+                <button id="delete-template">Delete</button>
+                <button id="shrink-template"
+                        onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
+                    -
+                </button>
+            </div>
+            User with <label for="user-id">user id</label><input
                 id="user-id">
             logged
             in with <label for="password">password</label>
