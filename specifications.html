@@ -9,6 +9,18 @@
             var new_copy = target.cloneNode(true);
             document.getElementById("specifications").appendChild(new_copy);
         }
+        function toggle_selected(target) {
+            console.log("toggling selected");
+            console.log( target.classList);
+            if (!target.classList.contains("spec-selected")) {
+                console.log("test indicates not selected");
+                target.classList.add("spec-selected");
+            }
+            else {
+                console.log("test indicates selected");
+                target.classList.remove("spec-selected");
+            }
+        }
     </script>
 </head>
 <body>
@@ -17,7 +29,6 @@
     <div id="step-template" class="area dsl-item hidden">
         <button id="insert-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <!-- START FIXTURES -->
     <div id="login-step-template" class="area dsl-item">User with <label for="user-id">user id</label><input
             id="user-id">
         logged
@@ -36,14 +47,13 @@
     </select> newsletter delivery.
         <button id="insert-opt-in-newsletter-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <!-- END FIXTURES -->
 </div>
 <div id="specifications" class="area spec-list">
     <header><h2>Specifications</h2></header>
     <header id="spec-header">
         <button id="add-new-spec">New</button>
     </header>
-    <div id="area spec-template">
+    <div id="area spec-template" onclick="toggle_selected(this)">
         <div id="options-template">
             <button id="hotspot"
                     onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
@@ -63,11 +73,14 @@
 
         </div>
     </div>
-    <!-- START SPECS -->
-    <div id="opt-in-spec" class="area specification">
-
+    <div id="opt-in-spec" class="area specification spec spec-selected" onclick="toggle_selected(this)">
+        <div id="login-step-template" class="area dsl-item">User with <label for="user-id">user id</label><input
+                id="user-id">
+            logged
+            in with <label for="password">password</label>
+            <input id="password">
+        </div>
     </div>
-    <!-- END SPECS -->
 </div>
 </body>
 </html>

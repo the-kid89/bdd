@@ -28,6 +28,10 @@ body {
     background: #8c9fff;
 }
 
+.spec {
+    background: #fff10d;
+}
+
 .spec-selected {
     background: #d5ff86;
 }
