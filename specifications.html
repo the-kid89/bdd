@@ -10,14 +10,10 @@
             document.getElementById("specifications").appendChild(new_copy);
         }
         function toggle_selected(target) {
-            console.log("toggling selected");
-            console.log( target.classList);
             if (!target.classList.contains("spec-selected")) {
-                console.log("test indicates not selected");
                 target.classList.add("spec-selected");
             }
             else {
-                console.log("test indicates selected");
                 target.classList.remove("spec-selected");
             }
         }
@@ -102,7 +98,7 @@
                     -
                 </button>
             </div>
-            User with <label for="user-id">user id</label><input
+             User with <label for="user-id">user id</label><input
                 id="user-id">
             logged
             in with <label for="password">password</label>
