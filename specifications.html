@@ -1,9 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="specifications.css"/>
     <meta charset="UTF-8">
     <title>News Letter Specifications</title>
+    <style>
+        .area {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        #menu {
+            float: left;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #specifications {
+            float: right;
+            width: 70%;
+            background: #5fffa2;
+        }
+
+        #possible-steps-list {
+            float: left;
+            width: 20%;
+            background: #ffd080;
+        }
+
+        body {
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .dsl-item {
+            background: #8c9fff;
+        }
+
+        .spec {
+            background: #fff10d;
+        }
+
+        .spec-selected {
+            background: #d5ff86;
+        }
+
+    </style>
     <script>
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
@@ -20,6 +65,7 @@
     </script>
 </head>
 <body>
+<div id="menu"><h3>Document Menu: <button id="Save">Save</button></h3></div>
 <div id="possible-steps-list" class="area dsl-list">
     <header><h2>Possible Steps</h2></header>
     <div id="step-template" class="area dsl-item hidden">
@@ -56,13 +102,13 @@
                 ...
             </button>
             <div id="option-actions-template" class="hidden">
-                <button id="move-up-template">Up</button>
-                <button id="move-down-template">Down</button>
-                <button id="delete-template">Delete</button>
                 <button id="shrink-template"
                         onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
                     -
                 </button>
+                <button id="move-up-template">Up</button>
+                <button id="move-down-template">Down</button>
+                <button id="delete-template">Delete</button>
             </div>
         </div>
         <div id="steps-template">
