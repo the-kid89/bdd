@@ -53,6 +53,8 @@
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
             document.getElementById("specifications").appendChild(new_copy);
+            var insert_button = new_copy.getElementsByTagName("button")[0];
+            new_copy.removeChild(insert_button);
         }
         function toggle_selected(target) {
             if (!target.classList.contains("spec-selected")) {
