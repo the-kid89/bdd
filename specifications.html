@@ -65,12 +65,18 @@
             }
         }
         function remove_step(target) {
-            this.remove();
+            console.log("removing step for");
+            console.log(target);
+            target.parentNode.removeChild(target);
         }
     </script>
 </head>
 <body>
-<div id="menu"><h3>Document Menu: <button id="Save">Save</button></h3></div>
+<div id="menu">
+    <h3>Document Menu:
+        <button id="Save">Save</button>
+    </h3>
+</div>
 <div id="possible-steps-list" class="area dsl-list">
     <header><h2>Possible Steps</h2></header>
     <div id="step-template" class="area dsl-item hidden">
@@ -113,7 +119,7 @@
                 </button>
                 <button id="move-up-template">Up</button>
                 <button id="move-down-template">Down</button>
-                <button id="delete-template" onclick="remove_step(this.parent.parent)">Delete</button>
+                <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
             </div>
         </div>
         <div id="steps-template">
@@ -132,24 +138,26 @@
                 </button>
                 <button id="move-up">Up</button>
                 <button id="move-down">Down</button>
-                <button id="delete" onclick="remove_step(this.parent.parent)" >Delete</button>
+                <button id="delete" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
             </div>
         </div>
         <div id="login-step" class="area dsl-item">
-            <button id="hotspot"
-                    onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
-                ...
-            </button>
-            <div id="option-actions-template" class="hidden">
-                <button id="shrink-template"
-                        onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
-                    -
+            <div id="options-template">
+                <button id="hotspot-template"
+                        onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
+                    ...
                 </button>
-                <button id="move-up-template">Up</button>
-                <button id="move-down-template">Down</button>
-                <button id="delete-template" onclick="remove_step(this.parent.parent)">Delete</button>
+                <div id="option-actions-template" class="hidden">
+                    <button id="shrink-template"
+                            onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
+                        -
+                    </button>
+                    <button id="move-up-template">Up</button>
+                    <button id="move-down-template">Down</button>
+                    <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
+                </div>
             </div>
-             User with <label for="user-id">user id</label><input
+            User with <label for="user-id">user id</label><input
                 id="user-id">
             logged
             in with <label for="password">password</label>
