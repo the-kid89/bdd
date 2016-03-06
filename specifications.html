@@ -52,7 +52,9 @@
     <script>
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
-            document.getElementById("specifications").appendChild(new_copy);
+            // document.getElementById("specifications").appendChild(new_copy);
+            var selected = document.getElementsByClassName("spec-selected")
+            for (var i=0; i<selected.length; i++) { selected[i].appendChild(new_copy); }
             var insert_button = new_copy.getElementsByTagName("button")[0];
             new_copy.removeChild(insert_button);
         }
