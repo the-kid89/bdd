@@ -12,21 +12,23 @@
     </script>
 </head>
 <body>
-<div id="possible-steps-list" class="dsl-list">
+<div id="possible-steps-list" class="area dsl-list">
     <header><h2>Possible Steps</h2></header>
-    <div id="step-template" class="dsl-item hidden">
+    <div id="step-template" class="area dsl-item hidden">
         <button id="insert-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <div id="login-step-template" class="dsl-item">User with <label for="user-id">user id</label><input id="user-id">
+    <!-- START FIXTURES -->
+    <div id="login-step-template" class="area dsl-item">User with <label for="user-id">user id</label><input
+            id="user-id">
         logged
         in with <label for="password">password</label>
         <input id="password">
         <button id="insert-login-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <div id="logout-template" class="dsl-item">User logged out
+    <div id="logout-template" class="area dsl-item">User logged out
         <button id="insert-logout-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
-    <div id="opt-in-newsletter-template" class="dsl-item">User selects <label
+    <div id="opt-in-newsletter-template" class="area dsl-item">User selects <label
             for="frequency-template">frequency</label><select id="frequency-template">
         <option>none</option>
         <option>weekly</option>
@@ -34,34 +36,38 @@
     </select> newsletter delivery.
         <button id="insert-opt-in-newsletter-step" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
+    <!-- END FIXTURES -->
 </div>
-<div id="specifications" class="spec-list">
+<div id="specifications" class="area spec-list">
     <header><h2>Specifications</h2></header>
-    <div id="opt-in-spec" class="specification">
-        <header id="spec-header">
-            <button id="add-new-spec">New</button>
-        </header>
-        <div id="spec-template">
-            <div id="options-template">
-                <button id="hotspot"
-                        onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
-                    ...
+    <header id="spec-header">
+        <button id="add-new-spec">New</button>
+    </header>
+    <div id="area spec-template">
+        <div id="options-template">
+            <button id="hotspot"
+                    onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
+                ...
+            </button>
+            <div id="option-actions" class="hidden">
+                <button id="move-up">Up</button>
+                <button id="move-down">Down</button>
+                <button id="delete">Delete</button>
+                <button id="shrink"
+                        onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
+                    -
                 </button>
-                <div id="option-actions" class="hidden">
-                    <button id="move-up">Up</button>
-                    <button id="move-down">Down</button>
-                    <button id="delete">Delete</button>
-                    <button id="shrink"
-                            onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
-                        -
-                    </button>
-                </div>
             </div>
         </div>
-        <div id="newsletter-spec">
-            
+        <div id="steps-template">
+
         </div>
     </div>
+    <!-- START SPECS -->
+    <div id="opt-in-spec" class="area specification">
+
+    </div>
+    <!-- END SPECS -->
 </div>
 </body>
 </html>

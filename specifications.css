@@ -1,20 +1,19 @@
-
-#specifications {
-    float: right;
-    width: 70%;
-    background: #5fffa2;
+.area {
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
 }
 
+#specifications {
+    float: right;
+    width: 70%;
+    background: #5fffa2;
+}
+
 #possible-steps-list {
     float: left;
     width: 20%;
-    padding: 10px;
-    margin: 10px;
     background: #ffd080;
-    border-radius: 10px;
 }
 
 body {
@@ -26,8 +25,10 @@ body {
 }
 
 .dsl-item {
-    border-radius: 10px;
     background: #8c9fff;
-    padding: 10px;
-    margin: 10px;
 }
+
+.spec-selected {
+    background: #d5ff86;
+}
+
