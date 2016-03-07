@@ -69,12 +69,24 @@
             console.log(target);
             target.parentNode.removeChild(target);
         }
+        function save_doc() {
+            var fixtures = document.getElementsByClassName("dsl-item");
+            var specs = document.getElementsByClassName("spec");
+            for (var fixture in fixtures) {
+                if (fixture.hasOwnProperty("nodeName") && fixture.nodeName === "DIV") {
+                    console.log(fixture.innerHTML);
+                }
+            }
+            for (var spec in specs) {
+                console.log(spec.innerHTML);
+            }
+        }
     </script>
 </head>
 <body>
 <div id="menu">
     <h3>Document Menu:
-        <button id="Save">Save</button>
+        <button id="Save" onclick="save_doc()">Save</button>
     </h3>
 </div>
 <div id="possible-steps-list" class="area dsl-list">
@@ -106,7 +118,7 @@
     <header id="spec-header">
         <button id="add-new-spec">New</button>
     </header>
-    <div id="spec-template" class="area spec" onclick="toggle_selected(this)">
+    <div id="spec-template" class="hidden area spec" onclick="toggle_selected(this)">
         <div id="options-template">
             <button id="hotspot-template"
                     onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
@@ -119,7 +131,8 @@
                 </button>
                 <button id="move-up-template">Up</button>
                 <button id="move-down-template">Down</button>
-                <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
+                <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete
+                </button>
             </div>
         </div>
         <div id="steps-template">
@@ -154,7 +167,8 @@
                     </button>
                     <button id="move-up-template">Up</button>
                     <button id="move-down-template">Down</button>
-                    <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
+                    <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete
+                    </button>
                 </div>
             </div>
             User with <label for="user-id">user id</label><input
