@@ -72,27 +72,30 @@
             console.log(target);
             target.parentNode.removeChild(target);
         }
-        function save_doc() {
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                console.log("got this from the server: " + xhr.responseText);
-            };
-            xhr.open("POST", "http://localhost:8080/save");
-            var element = document.getElementsByName("specs")[0];
+        function spec_data(section_name) {
+            var element = document.getElementsByName(section_name)[0];
             var data = element.innerHTML;
+            return data;
+        }
+        function save_doc() {
+            var data = spec_data("specs");
             console.log("data: " + data);
-            xhr.send(data);
-            return;
-            var fixtures = document.getElementsByClassName("dsl-item");
-            var specs = document.getElementsByClassName("spec");
-            for (var fixture in fixtures) {
-                if (fixture.hasOwnProperty("nodeName") && fixture.nodeName === "DIV") {
-                    console.log(fixture.innerHTML);
+
+            var http = new XMLHttpRequest();
+            var url = "http://localhost:8080/save";
+            http.open("POST", url, true);
+
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //http.setRequestHeader("Content-length", data.length);
+            //http.setRequestHeader("Connection", "close");
+
+            http.onreadystatechange = function() {
+                if(http.readyState == 4 && http.status == 200) {
+                    console.log("response from server: " + http.responseText);
                 }
-            }
-            for (var spec in specs) {
-                console.log(spec.innerHTML);
-            }
+            };
+            http.send(data);
+            return;
         }
     </script>
 </head>
