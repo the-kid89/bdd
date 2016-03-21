@@ -16,7 +16,7 @@
             margin-bottom: 20px;
         }
 
-        #specifications {
+        #specifications-area {
             float: right;
             width: 70%;
             background: #5fffa2;
@@ -52,9 +52,10 @@
     <script>
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
-            // document.getElementById("specifications").appendChild(new_copy);
             var selected = document.getElementsByClassName("spec-selected");
-            for (var i=0; i<selected.length; i++) { selected[i].appendChild(new_copy); }
+            for (var i = 0; i < selected.length; i++) {
+                selected[i].appendChild(new_copy);
+            }
             var insert_button = new_copy.getElementsByTagName("button")[0];
             new_copy.removeChild(insert_button);
         }
@@ -72,6 +73,16 @@
             target.parentNode.removeChild(target);
         }
         function save_doc() {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                console.log("got this from the server: " + xhr.responseText);
+            };
+            xhr.open("POST", "http://localhost:8080/save");
+            var element = document.getElementsByName("specs")[0];
+            var data = element.innerHTML;
+            console.log("data: " + data);
+            xhr.send(data);
+            return;
             var fixtures = document.getElementsByClassName("dsl-item");
             var specs = document.getElementsByClassName("spec");
             for (var fixture in fixtures) {
@@ -115,7 +126,7 @@
         <button id="insert-opt-in-newsletter-step-template" onclick="insert_clicked(this.parentNode)">Insert</button>
     </div>
 </div>
-<div id="specifications" class="area spec-list">
+<div id="specifications-area" class="area spec-list">
     <header><h2>Specifications</h2></header>
     <header id="spec-header">
         <button id="add-new-spec">New</button>
@@ -140,44 +151,46 @@
         <div id="steps-template">
         </div>
     </div>
-    <div id="opt-in-spec" class="area spec spec-selected" onclick="toggle_selected(this)">
-        <div id="options-template">
-            <button id="hotspot"
-                    onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
-                ...
-            </button>
-            <div id="option-actions" class="hidden">
-                <button id="shrink"
-                        onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
-                    -
-                </button>
-                <button id="move-up">Up</button>
-                <button id="move-down">Down</button>
-                <button id="delete" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
-            </div>
-        </div>
-        <div id="login-step" class="area dsl-item">
-            <div id="options-template">
-                <button id="hotspot-template"
+    <div id="specs" name="specs">
+        <div id="opt-in-spec" class="area spec spec-selected" onclick="toggle_selected(this)">
+            <div id="options">
+                <button id="hotspot"
                         onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
                     ...
                 </button>
-                <div id="option-actions-template" class="hidden">
-                    <button id="shrink-template"
+                <div id="option-actions" class="hidden">
+                    <button id="shrink"
                             onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
                         -
                     </button>
-                    <button id="move-up-template">Up</button>
-                    <button id="move-down-template">Down</button>
-                    <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete
-                    </button>
+                    <button id="move-up">Up</button>
+                    <button id="move-down">Down</button>
+                    <button id="delete" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete</button>
                 </div>
             </div>
-            User with <label for="user-id">user id</label><input
-                id="user-id">
-            logged
-            in with <label for="password">password</label>
-            <input id="password">
+            <div id="login-step" class="area dsl-item">
+                <div id="options-template">
+                    <button id="hotspot-template"
+                            onclick='this.nextElementSibling.style.display = "inline"; this.style.display="none" ;'>
+                        ...
+                    </button>
+                    <div id="option-actions-template" class="hidden">
+                        <button id="shrink-template"
+                                onclick='this.parentNode.previousElementSibling.style.display = "inline"; this.parentNode.style.display = "none";'>
+                            -
+                        </button>
+                        <button id="move-up-template">Up</button>
+                        <button id="move-down-template">Down</button>
+                        <button id="delete-template" onclick="remove_step(this.parentNode.parentNode.parentNode)">Delete
+                        </button>
+                    </div>
+                </div>
+                User with <label for="user-id">user id</label><input
+                    id="user-id">
+                logged
+                in with <label for="password">password</label>
+                <input id="password">
+            </div>
         </div>
     </div>
 </div>

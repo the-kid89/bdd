@@ -264,12 +264,15 @@ read -r REQUEST_METHOD REQUEST_URI REQUEST_HTTP_VERSION <<<"$line"
    || fail_with 400
 
 # Only GET is supported at this time
-[ "$REQUEST_METHOD" = "GET" ] || fail_with 405
+# [ "$REQUEST_METHOD" = "GET" ] || fail_with 405
+
+echo "got here"
 
 declare -a REQUEST_HEADERS
 
 while read -r line; do
-   line=${line%%$'\r'}
+	echo "$line" >> out.log
+ 	line=${line%%$'\r'}
    recv "$line"
 
    # If we've reached the end of the headers, break.
