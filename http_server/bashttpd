@@ -167,9 +167,6 @@ serve_file() {
 
    add_response_header "Content-Type"   "$CONTENT_TYPE";
 
-   read -r CONTENT_LENGTH < <(stat -c'%s' "$file")         && \
-      add_response_header "Content-Length" "$CONTENT_LENGTH"
-
    send_response_ok_exit < "$file"
 }
 
