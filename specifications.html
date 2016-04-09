@@ -9,47 +9,45 @@
             margin: 10px;
             border-radius: 10px;
         }
-
         #menu {
             float: left;
             width: 100%;
             margin-bottom: 20px;
         }
-
         #specifications-area {
             float: right;
             width: 70%;
             background: #5fffa2;
         }
-
         #possible-steps-list {
             float: left;
             width: 20%;
             background: #ffd080;
         }
 
-        body {
-            width: 100%;
-        }
+        body { width: 100%; }
 
-        .hidden {
-            display: none;
-        }
-
-        .dsl-item {
-            background: #8c9fff;
-        }
-
-        .spec {
-            background: #fff10d;
-        }
-
-        .spec-selected {
-            background: #d5ff86;
-        }
+        .hidden        { display: none; }
+        .dsl-item      { background: #8c9fff; }
+        .spec          { background: #fff10d; }
+        .spec-selected { background: #d5ff86; }
 
     </style>
     <script>
+        onload = function () {
+            var elements = document.getElementsByClassName("persist");
+            var counter = elements.length;
+            while (counter--) {
+                var element = elements[counter];
+                console.log("element: " + element);
+                element.oninput = persistValue;
+                var storage = element.nextElementSibling;
+                storage.text = element.valueOf();
+            }
+        };
+        function persistValue() {
+            this.nextElementSibling.text = this.valueOf();
+        }
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
             var selected = document.getElementsByClassName("spec-selected");
@@ -187,10 +185,10 @@
                     </div>
                 </div>
                 User with <label for="user-id">user id</label><input
-                    id="user-id">
+                    id="user-id" class="persist"><span class="hidden" id="user-id-value" > </span>
                 logged
                 in with <label for="password">password</label>
-                <input id="password">
+                <input id="password" class="persist"><span class="hidden" id="password-value" > </span>
             </div>
         </div>
     </div>
