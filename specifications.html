@@ -34,20 +34,6 @@
 
     </style>
     <script>
-        onload = function () {
-            var elements = document.getElementsByClassName("persist");
-            var counter = elements.length;
-            while (counter--) {
-                var element = elements[counter];
-                console.log("element: " + element);
-                element.oninput = persistValue;
-                var storage = element.nextElementSibling;
-                storage.text = element.valueOf();
-            }
-        };
-        function persistValue() {
-            this.nextElementSibling.text = this.valueOf();
-        }
         function insert_clicked(target) {
             var new_copy = target.cloneNode(true);
             var selected = document.getElementsByClassName("spec-selected");
@@ -76,6 +62,23 @@
             return data;
         }
         function save_doc() {
+            function get_and_save_values() {
+                var specs = document.getElementsByName("specs");
+                var values = "";
+                function AddToValueCollection(value) {
+                    values = values + value;
+                }
+
+                for (var spec in this.selectAllChildren(specs)) {
+                    for (var step in this.selectAllChildren(spec)) {
+                        for(var value in GetAllValuesFrom(step)) {
+                            AddToValueCollection(value);
+                        }
+                    }
+                }
+            }
+
+            get_and_save_values();
             var data = spec_data("specs");
             console.log("data: " + data);
 
